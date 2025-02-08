@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"github.com/sinland/yandex-taxi-go/internal/models"
 	"io"
+	"log/slog"
 	"net/http"
 	"time"
 )
@@ -105,12 +106,14 @@ func (c *Client) GetCarsList(ctx context.Context, args GetCarsListArgs) (*GetCar
 	req.Header.Set(headerXAPIKey, c.apiKey)
 	req.Header.Set(headerXCientID, c.clientId)
 
+	slog.DebugContext(ctx, "querying cars list", "url", reqUrl, "body", string(body))
 	res, err := c.httpClient.Do(req)
 	if err != nil {
 		return nil, err
 	}
 	defer res.Body.Close()
 
+	slog.DebugContext(ctx, "query result", "status_code", res.StatusCode, "status", res.Status)
 	if res.StatusCode != http.StatusOK {
 		resData := models.ErrorResponse{}
 		if err = json.NewDecoder(res.Body).Decode(&resData); err != nil {
