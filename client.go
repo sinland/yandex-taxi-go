@@ -235,11 +235,18 @@ func (c *Client) GetDriverProfiles(ctx context.Context, args GetDriverProfilesAr
 
 		if resData.DriverProfiles[i].DriverProfile != nil {
 			profile.Profile = &DriverProfileData{
-				Id:               resData.DriverProfiles[i].DriverProfile.Id,
-				CheckMessage:     resData.DriverProfiles[i].DriverProfile.CheckMessage,
-				Comment:          resData.DriverProfiles[i].DriverProfile.Comment,
-				CreatedDate:      resData.DriverProfiles[i].DriverProfile.CreatedDate,
-				DriverLicense:    resData.DriverProfiles[i].DriverProfile.DriverLicense,
+				Id:           resData.DriverProfiles[i].DriverProfile.Id,
+				CheckMessage: resData.DriverProfiles[i].DriverProfile.CheckMessage,
+				Comment:      resData.DriverProfiles[i].DriverProfile.Comment,
+				CreatedDate:  resData.DriverProfiles[i].DriverProfile.CreatedDate,
+				DriverLicense: DriverLicense{
+					IssueDate:        resData.DriverProfiles[i].DriverProfile.DriverLicense.IssueDate,
+					ExpirationDate:   resData.DriverProfiles[i].DriverProfile.DriverLicense.ExpirationDate,
+					Number:           resData.DriverProfiles[i].DriverProfile.DriverLicense.Number,
+					NormalizedNumber: resData.DriverProfiles[i].DriverProfile.DriverLicense.NormalizedNumber,
+					Country:          resData.DriverProfiles[i].DriverProfile.DriverLicense.Country,
+					BirthDate:        resData.DriverProfiles[i].DriverProfile.DriverLicense.BirthDate,
+				},
 				EmploymentType:   resData.DriverProfiles[i].DriverProfile.EmploymentType,
 				FirstName:        resData.DriverProfiles[i].DriverProfile.FirstName,
 				HasContractIssue: resData.DriverProfiles[i].DriverProfile.HasContractIssue,

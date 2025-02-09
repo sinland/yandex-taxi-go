@@ -29,21 +29,30 @@ type DriverProfileCurrentStatus struct {
 	StatusUpdatedAt string // Время последнего обновления текущего состояния водителя в формате ISO 8601.
 }
 
+type DriverLicense struct {
+	IssueDate        string
+	ExpirationDate   string
+	Number           string
+	NormalizedNumber string
+	Country          string
+	BirthDate        string
+}
+
 type DriverProfileData struct {
-	Id               string   // Идентификатор профиля водителя
-	CheckMessage     string   // Прочее (доступно сотрудникам парка)
-	Comment          string   // ...
-	CreatedDate      string   // Дата создания профиля в формате ISO 8601
-	DriverLicense    string   // Водительское удостоверение
-	EmploymentType   string   // Тип занятости водителя
-	FirstName        string   // Имя
-	HasContractIssue bool     // Существуют проблемы с подтверждением занятости
-	LastName         string   // Фамилия
-	MiddleName       string   // Отчество
-	ParkId           string   // Идентификатор партнёра
-	Phones           []string // Номер телефона
-	WorkRuleId       string   // Идентификатор условия работы
-	WorkStatus       string   // Статус работы водителя
+	Id               string        // Идентификатор профиля водителя
+	CheckMessage     string        // Прочее (доступно сотрудникам парка)
+	Comment          string        // ...
+	CreatedDate      string        // Дата создания профиля в формате ISO 8601
+	DriverLicense    DriverLicense // Водительское удостоверение
+	EmploymentType   string        // Тип занятости водителя
+	FirstName        string        // Имя
+	HasContractIssue bool          // Существуют проблемы с подтверждением занятости
+	LastName         string        // Фамилия
+	MiddleName       string        // Отчество
+	ParkId           string        // Идентификатор партнёра
+	Phones           []string      // Номер телефона
+	WorkRuleId       string        // Идентификатор условия работы
+	WorkStatus       string        // Статус работы водителя
 }
 
 type DriverProfilePark struct {

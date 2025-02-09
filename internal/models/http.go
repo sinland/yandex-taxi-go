@@ -121,21 +121,30 @@ type DriverProfileCurrentStatus struct {
 	StatusUpdatedAt string `json:"status_updated_at"` // Время последнего обновления текущего состояния водителя в формате ISO 8601.
 }
 
+type DriverLicense struct {
+	IssueDate        string `yaml:"issue_date"`
+	ExpirationDate   string `yaml:"expiration_date"`
+	Number           string `yaml:"number"`
+	NormalizedNumber string `yaml:"normalized_number"`
+	Country          string `yaml:"country"`
+	BirthDate        string `yaml:"birth_date"`
+}
+
 type DriverProfileModel struct {
-	Id               string   `json:"id"`                 // Идентификатор профиля водителя
-	CheckMessage     string   `json:"check_message"`      // Прочее (доступно сотрудникам парка)
-	Comment          string   `json:"comment"`            // ...
-	CreatedDate      string   `json:"created_date"`       // Дата создания профиля в формате ISO 8601
-	DriverLicense    string   `json:"driver_license"`     // Водительское удостоверение
-	EmploymentType   string   `json:"employment_type"`    // Тип занятости водителя
-	FirstName        string   `json:"first_name"`         // Имя
-	HasContractIssue bool     `json:"has_contract_issue"` // Существуют проблемы с подтверждением занятости
-	LastName         string   `json:"last_name"`          // Фамилия
-	MiddleName       string   `json:"middle_name"`        // Отчество
-	ParkId           string   `json:"park_id"`            // Идентификатор партнёра
-	Phones           []string `json:"phones"`             // Номер телефона
-	WorkRuleId       string   `json:"work_rule_id"`       // Идентификатор условия работы
-	WorkStatus       string   `json:"work_status"`        // Статус работы водителя
+	Id               string        `json:"id"`                 // Идентификатор профиля водителя
+	CheckMessage     string        `json:"check_message"`      // Прочее (доступно сотрудникам парка)
+	Comment          string        `json:"comment"`            // ...
+	CreatedDate      string        `json:"created_date"`       // Дата создания профиля в формате ISO 8601
+	DriverLicense    DriverLicense `json:"driver_license"`     // Водительское удостоверение
+	EmploymentType   string        `json:"employment_type"`    // Тип занятости водителя
+	FirstName        string        `json:"first_name"`         // Имя
+	HasContractIssue bool          `json:"has_contract_issue"` // Существуют проблемы с подтверждением занятости
+	LastName         string        `json:"last_name"`          // Фамилия
+	MiddleName       string        `json:"middle_name"`        // Отчество
+	ParkId           string        `json:"park_id"`            // Идентификатор партнёра
+	Phones           []string      `json:"phones"`             // Номер телефона
+	WorkRuleId       string        `json:"work_rule_id"`       // Идентификатор условия работы
+	WorkStatus       string        `json:"work_status"`        // Статус работы водителя
 }
 
 type DriverProfile struct {

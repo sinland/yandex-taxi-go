@@ -171,11 +171,18 @@ func TestClient_GetDriverProfiles(t *testing.T) {
 				StatusUpdatedAt: "2020-04-27T08:44:05.871+0000",
 			},
 			DriverProfile: &models.DriverProfileModel{
-				Id:               gofakeit.UUID(),
-				CheckMessage:     "great driver",
-				Comment:          "great driver",
-				CreatedDate:      "2020-04-23T13:08:05.552+0000",
-				DriverLicense:    "AD12345",
+				Id:           gofakeit.UUID(),
+				CheckMessage: "great driver",
+				Comment:      "great driver",
+				CreatedDate:  "2020-04-23T13:08:05.552+0000",
+				DriverLicense: models.DriverLicense{
+					IssueDate:        "2020-10-28",
+					ExpirationDate:   "2050-10-28",
+					Number:           "070236",
+					NormalizedNumber: "AA00123456",
+					Country:          "rus",
+					BirthDate:        "1975-10-28",
+				},
 				EmploymentType:   "selfemployed",
 				FirstName:        "Ivan",
 				HasContractIssue: true,
@@ -228,7 +235,12 @@ func TestClient_GetDriverProfiles(t *testing.T) {
 		require.Equal(t, testProfile.DriverProfile.CheckMessage, result.DriverProfiles[0].Profile.CheckMessage)
 		require.Equal(t, testProfile.DriverProfile.Comment, result.DriverProfiles[0].Profile.Comment)
 		require.Equal(t, testProfile.DriverProfile.CreatedDate, result.DriverProfiles[0].Profile.CreatedDate)
-		require.Equal(t, testProfile.DriverProfile.DriverLicense, result.DriverProfiles[0].Profile.DriverLicense)
+		require.Equal(t, testProfile.DriverProfile.DriverLicense.IssueDate, result.DriverProfiles[0].Profile.DriverLicense.IssueDate)
+		require.Equal(t, testProfile.DriverProfile.DriverLicense.ExpirationDate, result.DriverProfiles[0].Profile.DriverLicense.ExpirationDate)
+		require.Equal(t, testProfile.DriverProfile.DriverLicense.Number, result.DriverProfiles[0].Profile.DriverLicense.Number)
+		require.Equal(t, testProfile.DriverProfile.DriverLicense.NormalizedNumber, result.DriverProfiles[0].Profile.DriverLicense.NormalizedNumber)
+		require.Equal(t, testProfile.DriverProfile.DriverLicense.Country, result.DriverProfiles[0].Profile.DriverLicense.Country)
+		require.Equal(t, testProfile.DriverProfile.DriverLicense.BirthDate, result.DriverProfiles[0].Profile.DriverLicense.BirthDate)
 		require.Equal(t, testProfile.DriverProfile.EmploymentType, result.DriverProfiles[0].Profile.EmploymentType)
 		require.Equal(t, testProfile.DriverProfile.FirstName, result.DriverProfiles[0].Profile.FirstName)
 		require.Equal(t, testProfile.DriverProfile.HasContractIssue, result.DriverProfiles[0].Profile.HasContractIssue)
